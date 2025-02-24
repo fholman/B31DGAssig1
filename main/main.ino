@@ -5,12 +5,20 @@
 // d  M - 13 x 500 = 6500us = 6.5ms
 // A - 1 % 4 + 1 = 2
 
-#define LED1 13
-#define LED2 26
+#define LED1 4
+#define LED2 16
 #define BUTTON1 23
-#define BUTTON2 2
+#define BUTTON2 22
 
-const bool debug = true;
+#define DEBUG 1
+
+#ifdef DEBUG
+#define FACTOR 1000
+#else
+#define FACTOR 1
+#endif
+
+//const bool debug = true;
 
 const float a = 800;
 const uint16_t b = 1200;
@@ -68,12 +76,12 @@ void loop() {
 
   if (n == numPulses || n == 0) 
   {
-    if (!start) newDelay(d);
+    if (!start) delayMicroseconds(d * FACTOR);
 
     start = false;
 
     digitalWrite(LED2, HIGH);
-    newDelay(tysncOn);
+    delayMicroseconds(tysncOn * FACTOR);
     digitalWrite(LED2, LOW);
 
     n = button2State ? 0 : numPulses;
@@ -84,23 +92,12 @@ void loop() {
   Serial.println(n);
 
   digitalWrite(LED1, button1State);
-  newDelay(newTime(n));
+  delayMicroseconds(newTime(n) * FACTOR);
   digitalWrite(LED1, LOW);
-  newDelay(b);
+  delayMicroseconds(b * FACTOR);
 
 }
 
 float newTime(uint16_t val) {
   return val<2 ? a : a + ((val-1) * 50);
-}
-
-void newDelay(uint32_t t) {
-  if (debug) 
-  {
-    delayMicroseconds(t * 1000);
-  }
-  else 
-  {
-    delayMicroseconds(t);
-  }
 }
