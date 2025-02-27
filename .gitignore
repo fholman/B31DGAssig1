@@ -6,16 +6,12 @@ sdkconfig.old
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
+*.o
 *.elf
 *.bin
 *.hex
 *.map
 *.log
-
-# Ignore Part2 subdirectory build files
-Part2/build/
-Part2/sdkconfig
-Part2/sdkconfig.old
 
 # Ignore IDE-specific files
 .vscode/

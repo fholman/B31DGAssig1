@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  *
  * @author Fraser Holman
@@ -116,9 +115,9 @@ void customDelay(uint32_t t) {
  */
 void dataPulse(uint16_t pulseCounter) {
     // DATA pulse
-    gpio_set_level(SYNC, enableState); // turn LED high only if DATA has been enabled by a button interrupt
+    gpio_set_level(DATA, enableState); // turn LED high only if DATA has been enabled by a button interrupt
     customDelay(TON(pulseCounter)); // pulse width changes depending on pulse number
-    gpio_set_level(SYNC, 0);
+    gpio_set_level(DATA, 0);
     customDelay(offTime); // pulse off-time
 }
 
@@ -128,9 +127,9 @@ void dataPulse(uint16_t pulseCounter) {
  *
  */
 void syncPulse() {
-    gpio_set_level(DATA, 1);
+    gpio_set_level(SYNC, 1);
     customDelay(tysncOn); // SYNC pulse on-time (50us real time)
-    gpio_set_level(DATA, 0);
+    gpio_set_level(SYNC, 0);
 }
 
 /**
