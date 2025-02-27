@@ -2,6 +2,23 @@
 
 # B31DG Assignment 1
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#aproject-overview">Project Overview</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#repository-structure">Repository Structure</a>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
 ## Project Overview
 This project is an **ESP32-based signal control system** designed to handle input interrupts and generate pulse waveforms. It utilizes GPIO for input buttons and output signals, with an efficient **interrupt-driven** approach to manage button presses and control LED signaling.
 
@@ -63,7 +80,7 @@ The repository is split mainly into doc and src files. The src files contain bot
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### **2️ Build & Flash**
+### **Build & Flash**
 ```sh
 idf.py set-target esp32
 idf.py build
