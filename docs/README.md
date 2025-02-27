@@ -11,28 +11,30 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 - **Custom delay implementation** for precise waveform control
 
 ## Repository Structure
+
+├── docs                    # Documentation files
+├── src                     # Source files (alternatively `lib` or `app`)
+└── README.md
+
+
 B31DGASSIG1/  
-│── src/                # Source code directory  
-│   ├── arduino/        # Arduino implementation  
-│   │   ├── main/       # Required folder for Arduino `.ino` file  
+│── src/
+│   ├── arduino/
+│   │   ├── main/
 │   │   │   ├── main.ino  
-│   │   ├── other_files # Any supporting Arduino libraries or scripts  
-│   │  
-│   ├── c_code/         # ESP32 C implementation  
+│   ├── espressifIDF/ 
 │   │   ├── main.c      # Main application  
 │   │   ├── main.h      # Header files  
-│   │   ├── other.c/.h  # Additional source files  
-│  
-│── bin/                # Compiled binaries and firmware  
-│   ├── firmware.bin    # Flashable ESP32 binary  
-│   ├── firmware.elf    # Executable firmware  
-│  
-│── build/              # Temporary build files (should be ignored by Git)  
+│   │   ├── other.c/.h  # Additional source files  │  
 │── docs/               # Documentation and project reports  
-│── tools/              # Scripts for flashing or utilities  
-│── .gitignore          # Specifies ignored files in the repository  
-│── README.md           # Project documentation  
-│── CMakeLists.txt      # Build system configuration for ESP32  
+
+├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
 
 
 
