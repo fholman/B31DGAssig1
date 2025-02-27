@@ -18,6 +18,19 @@ The alternate signal was a reversed waveform of the original signal, this can be
 | **Alternative Behaviour** | 'A' maps to 1        | (1 % 4) + 1 = **2**                 |
 | **T<sub>ON(n)</sub>** DATA pulse width | N/A                       | 800 + ((n - 1) × 50µs) for n ≥ 2   |
 
+### Built With
+
+* [![Arduino][Arduino-logo]][Arduino-url]
+* [![VS Code][VSCode-logo]][VSCode-url]
+* [![ESP-IDF][ESP-IDF-logo]][ESP-IDF-url]
+
+[Arduino-logo]: https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white
+[VSCode-logo]: https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white
+[ESP-IDF-logo]: https://img.shields.io/badge/ESP--IDF-FF0000?style=for-the-badge&logo=espressif&logoColor=white
+
+[Arduino-url]: https://www.arduino.cc/
+[VSCode-url]: https://code.visualstudio.com/
+[ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/
 
 
 ## Repository Structure
