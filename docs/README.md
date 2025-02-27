@@ -7,7 +7,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#aproject-overview">Project Overview</a>
+      <a href="#project-overview">Project Overview</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -80,7 +80,13 @@ The repository is split mainly into doc and src files. The src files contain bot
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### **Build & Flash**
+### Getting Started
+
+Downloads:
+- Arduino IDE: https://www.arduino.cc/en/software
+- VSCode: https://code.visualstudio.com/download
+- ESP-IDF: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html
+
 ```sh
 idf.py set-target esp32
 idf.py build
