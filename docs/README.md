@@ -76,6 +76,7 @@ Downloads:
 - VSCode: https://code.visualstudio.com/download
 - ESP-IDF: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html
 
+To run the ESP code using the ESP-IDF:
 ```sh
 idf.py set-target esp32
 idf.py build
