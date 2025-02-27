@@ -19,10 +19,10 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 
 # B31DGAssig1
 
-* [.vscode/](../.vscode)
-  * [c_cpp_properties.json](../.vscode/c_cpp_properties.json)
-  * [settings.json](../.vscode/settings.json)
 * [docs/](../docs)
+  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](./B31DGAssig1/docs/B31DG - Assignment 1 - H00368728 - Fraser Holman.docx)
+  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](../docs/B31DG%20-%20Assignment%201%20-%20H00368728%20-%20Fraser%20Holman.docx)
+
   * [alternateWaveform.PNG](../docs/alternateWaveform.PNG)
   * [normalWaveform.PNG](../docs/normalWaveform.PNG)
   * [README.md](../docs/README.md)
@@ -36,7 +36,6 @@ This project is an **ESP32-based signal control system** designed to handle inpu
     * [CMakeLists.txt](../src/espressifIDF/CMakeLists.txt)
     * [sdkconfig](../src/espressifIDF/sdkconfig)
     * [sdkconfig.old](../src/espressifIDF/sdkconfig.old)
-* [.gitignore](../.gitignore)
 
 
 ## Setup Instructions
