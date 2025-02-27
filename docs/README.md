@@ -3,17 +3,28 @@
 ## Project Overview
 This project is an **ESP32-based signal control system** designed to handle input interrupts and generate pulse waveforms. It utilizes GPIO for input buttons and output signals, with an efficient **interrupt-driven** approach to manage button presses and control LED signaling.
 
-## Features
-- **ESP32-based** real-time signal processing
-- **Button interrupt handling** with debounce logic
-- **Configurable pulse generation** based on selection mode
-- **ESP Logging support** for debugging and monitoring
-- **Custom delay implementation** for precise waveform control
+## About The Project
+The project follows the requirements of B31DG Assignment 1. The system utilises GPIO pins on an ESP32-WROOM module, the system was first implemented in the Arduino ide in a .ino file and then was followed by implementing the system using the ESP-IDF extension with VSCode. The system generates a waveform utilising two GPIO pins for LEDs and a further two GPIO pins for input buttons. The signal timing parameters were defined by the calculations below. 
+
+The alternate signal was a reversed waveform of the original signal.
+
+
+| **Parameter**           | **Numerical Mapping**      | **Calculation**                     |
+|------------------------|---------------------------|-------------------------------------|
+| **a**                 | 'H' maps to 8             | 8 × 100µs = **800µs**               |
+| **b**                 | 'O' maps to 12            | 12 × 100µs = **1200µs**             |
+| **c**                 | 'L' maps to 12            | 12 + 4 = **16**                     |
+| **d**                 | 'M' maps to 13            | 13 × 500µs = **6500µs**             |
+| **Alternative Behaviour** | 'A' maps to 1        | (1 % 4) + 1 = **2**                 |
+| **T<sub>ON(n)</sub>** | N/A                       | 800 + ((n - 1) × 50µs) for n ≥ 2   |
+
+
 
 ## Repository Structure
 
+The repository is split mainly into doc and src files. The src files contain both the arduino .ino code and espressif .c and .h files for the working waveform. The doc files contain documents in relation to the assignment.
 
-* [docs/](../docs)
+* [docs/](../docs)  # related documents
   * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](../docs/B31DG%20-%20Assignment%201%20-%20H00368728%20-%20Fraser%20Holman.docx)  # assignment report
   * [alternateWaveform.PNG](../docs/alternateWaveform.PNG)  # alternate waveform png
   * [normalWaveform.PNG](../docs/normalWaveform.PNG)    # normal waveform png
@@ -27,13 +38,6 @@ This project is an **ESP32-based signal control system** designed to handle inpu
       * [main.c/](../src/espressifIDF/main/main.c)
       * [main.h/](../src/espressifIDF/main/main.h)
 
-
-## Setup Instructions
-### **1️ Prerequisites**
-- **ESP-IDF (Espressif IoT Development Framework)** installed  
-- **Python 3.x** for ESP-IDF  
-- **CMake & Ninja Build System**  
-- **VS Code with ESP-IDF Plugin** (Recommended)  
 
 ### **2️ Build & Flash**
 ```sh
