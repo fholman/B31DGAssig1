@@ -14,16 +14,16 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 
 
 * [docs/](../docs)
-  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](../docs/B31DG%20-%20Assignment%201%20-%20H00368728%20-%20Fraser%20Holman.docx)
-  * [alternateWaveform.PNG](../docs/alternateWaveform.PNG)
-  * [normalWaveform.PNG](../docs/normalWaveform.PNG)
-  * [README.md](../docs/README.md)
-* [src/](../src)
+  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](../docs/B31DG%20-%20Assignment%201%20-%20H00368728%20-%20Fraser%20Holman.docx)  # assignment report
+  * [alternateWaveform.PNG](../docs/alternateWaveform.PNG)  # alternate waveform png
+  * [normalWaveform.PNG](../docs/normalWaveform.PNG)    # normal waveform png
+  * [README.md](../docs/README.md)  # read me
+* [src/](../src)    # source files
   * [arduino/](../src/arduino)
     * [main/](../src/arduino/main)
-      * [main.ino/](../src/arduino/main/main.ino)
+      * [main.ino/](../src/arduino/main/main.ino)   # arduino code
   * [espressifIDF/](../src/espressifIDF)
-    * [main/](../src/espressifIDF/main)
+    * [main/](../src/espressifIDF/main) # ESP-IDF code
       * [main.c/](../src/espressifIDF/main/main.c)
       * [main.h/](../src/espressifIDF/main/main.h)
 
