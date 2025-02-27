@@ -3,6 +3,8 @@
 ## Project Overview
 This project is an **ESP32-based signal control system** designed to handle input interrupts and generate pulse waveforms. It utilizes GPIO for input buttons and output signals, with an efficient **interrupt-driven** approach to manage button presses and control LED signaling.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## About The Project
 The project follows the requirements of B31DG Assignment 1. The system utilises GPIO pins on an ESP32-WROOM module, the system was first implemented in the Arduino ide in a .ino file and then was followed by implementing the system using the ESP-IDF extension with VSCode. The system generates two waveforms utilising two GPIO pins for LEDs and a further two GPIO pins for input buttons. The DATA signal is defined by the calculations below and the SYNC signal pulses at the beginning of each DATA signal.
 
@@ -18,7 +20,11 @@ The alternate signal was a reversed waveform of the original signal, this can be
 | **Alternative Behaviour** | 'A' maps to 1        | (1 % 4) + 1 = **2**                 |
 | **T<sub>ON(n)</sub>** DATA pulse width | N/A                       | 800 + ((n - 1) × 50µs) for n ≥ 2   |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Built With
+
+The following frameworks were used to build this project:
 
 * [![Arduino][Arduino-logo]][Arduino-url]
 * [![VS Code][VSCode-logo]][VSCode-url]
@@ -30,8 +36,9 @@ The alternate signal was a reversed waveform of the original signal, this can be
 
 [Arduino-url]: https://www.arduino.cc/
 [VSCode-url]: https://code.visualstudio.com/
-[ESP-IDF-url]: https://docs.espressif.com/projects/esp-idf/en/latest/
+[ESP-IDF-url]: https://idf.espressif.com/
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Repository Structure
 
@@ -51,6 +58,8 @@ The repository is split mainly into doc and src files. The src files contain bot
       * [main.c/](../src/espressifIDF/main/main.c)
       * [main.h/](../src/espressifIDF/main/main.h)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ### **2️ Build & Flash**
 ```sh
@@ -58,4 +67,14 @@ idf.py set-target esp32
 idf.py build
 idf.py flash
 idf.py monitor
+```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contact
+
+Fraser Holman
+fjah2000@hw.ac.uk
+H00368728
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
