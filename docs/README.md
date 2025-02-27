@@ -17,25 +17,27 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 └── README.md
 
 
-B31DGASSIG1/  
-│── src/
-│   ├── arduino/
-│   │   ├── main/
-│   │   │   ├── main.ino  
-│   ├── espressifIDF/ 
-│   │   ├── main.c      # Main application  
-│   │   ├── main.h      # Header files  
-│   │   ├── other.c/.h  # Additional source files  │  
-│── docs/               # Documentation and project reports  
+# B31DGAssig1
 
-├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
-
+* [.vscode/](./B31DGAssig1/.vscode)
+  * [c_cpp_properties.json](./B31DGAssig1/.vscode/c_cpp_properties.json)
+  * [settings.json](./B31DGAssig1/.vscode/settings.json)
+* [docs/](./B31DGAssig1/docs)
+  * [alternateWaveform.PNG](./B31DGAssig1/docs/alternateWaveform.PNG)
+  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](./B31DGAssig1/docs/B31DG - Assignment 1 - H00368728 - Fraser Holman.docx)
+  * [normalWaveform.PNG](./B31DGAssig1/docs/normalWaveform.PNG)
+  * [README.md](./B31DGAssig1/docs/README.md)
+* [src/](./B31DGAssig1/src)
+  * [arduino/](./B31DGAssig1/src/arduino)
+    * [main/](./B31DGAssig1/src/arduino/main)
+  * [espressifIDF/](./B31DGAssig1/src/espressifIDF)
+    * [.vscode/](./B31DGAssig1/src/espressifIDF/.vscode)
+    * [build/](./B31DGAssig1/src/espressifIDF/build)
+    * [main/](./B31DGAssig1/src/espressifIDF/main)
+    * [CMakeLists.txt](./B31DGAssig1/src/espressifIDF/CMakeLists.txt)
+    * [sdkconfig](./B31DGAssig1/src/espressifIDF/sdkconfig)
+    * [sdkconfig.old](./B31DGAssig1/src/espressifIDF/sdkconfig.old)
+* [.gitignore](./B31DGAssig1/.gitignore)
 
 
 ## Setup Instructions
