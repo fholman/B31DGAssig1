@@ -20,6 +20,12 @@
   </ol>
 </details>
 
+- [Project Overview](#project-overview)  
+  - [Built With](#built-with)  
+- [Repository Structure](#repository-structure)  
+- [Getting Started](#getting-started)  
+- [Contact](#contact)  
+
 ## Project Overview
 This project is an **ESP32-based signal control system** designed to handle input interrupts and generate pulse waveforms. It utilizes GPIO for input buttons and output signals, with an efficient **interrupt-driven** approach to manage button presses and control LED signaling.
 
