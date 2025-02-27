@@ -1,0 +1,36 @@
+# Ignore build artifacts for ESP-IDF projects
+/build/
+**/build/
+sdkconfig
+sdkconfig.old
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.elf
+*.bin
+*.hex
+*.map
+*.log
+
+# Ignore Part2 subdirectory build files
+Part2/build/
+Part2/sdkconfig
+Part2/sdkconfig.old
+
+# Ignore IDE-specific files
+.vscode/
+**/.vscode/
+.idea/
+cmake-build-debug/
+
+# Ignore Python cache files
+*.pyc
+__pycache__/
+
+# Ignore temporary and OS-generated files
+*.swp
+.DS_Store
+Thumbs.db
+
+# Ignore binary files and images
+*.PNG
