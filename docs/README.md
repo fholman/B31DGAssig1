@@ -1,4 +1,4 @@
-# B31DGAssig1
+# B31DG Assignment 1
 
 # **ESP32 Signal Control Project**
 
@@ -15,14 +15,14 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 ## Project Structure
 
 
-## 🔧 Setup Instructions
-### **1️⃣ Prerequisites**
+## Setup Instructions
+### **1️Prerequisites**
 - **ESP-IDF (Espressif IoT Development Framework)** installed  
 - **Python 3.x** for ESP-IDF  
 - **CMake & Ninja Build System**  
 - **VS Code with ESP-IDF Plugin** (Recommended)  
 
-### **2️⃣ Build & Flash**
+### **2️Build & Flash**
 ```sh
 idf.py set-target esp32
 idf.py build

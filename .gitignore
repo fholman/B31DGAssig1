@@ -32,5 +32,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Ignore binary files and images
-*.PNG
