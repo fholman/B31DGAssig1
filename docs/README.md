@@ -24,7 +24,6 @@ This project is an **ESP32-based signal control system** designed to handle inpu
   * [settings.json](./B31DGAssig1/.vscode/settings.json)
 * [docs/](./B31DGAssig1/docs)
   * [alternateWaveform.PNG](./B31DGAssig1/docs/alternateWaveform.PNG)
-  * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](./B31DGAssig1/docs/B31DG - Assignment 1 - H00368728 - Fraser Holman.docx)
   * [normalWaveform.PNG](./B31DGAssig1/docs/normalWaveform.PNG)
   * [README.md](./B31DGAssig1/docs/README.md)
 * [src/](./B31DGAssig1/src)
