@@ -15,6 +15,7 @@
     <li>
       <a href="#repository-structure">Repository Structure</a>
     </li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
