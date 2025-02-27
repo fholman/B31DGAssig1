@@ -1,3 +1,5 @@
+<a id="readme-top"></a>
+
 # B31DG Assignment 1
 
 ## Project Overview
