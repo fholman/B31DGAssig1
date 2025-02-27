@@ -28,7 +28,7 @@ This project is an **ESP32-based signal control system** designed to handle inpu
   * [normalWaveform.PNG](./B31DGAssig1/docs/normalWaveform.PNG)
   * [README.md](./B31DGAssig1/docs/README.md)
 * [src/](./B31DGAssig1/src)
-  * [arduino/](./B31DGAssig1/src/arduino)
+  * [arduino/](./src/arduino)
     * [main/](./B31DGAssig1/src/arduino/main)
   * [espressifIDF/](./B31DGAssig1/src/espressifIDF)
     * [.vscode/](./B31DGAssig1/src/espressifIDF/.vscode)
