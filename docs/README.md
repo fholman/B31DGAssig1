@@ -21,13 +21,11 @@ This project is an **ESP32-based signal control system** designed to handle inpu
 * [src/](../src)
   * [arduino/](../src/arduino)
     * [main/](../src/arduino/main)
+      * [main.ino/](../src/arduino/main/main.ino)
   * [espressifIDF/](../src/espressifIDF)
-    * [.vscode/](../src/espressifIDF/.vscode)
-    * [build/](../src/espressifIDF/build)
     * [main/](../src/espressifIDF/main)
-    * [CMakeLists.txt](../src/espressifIDF/CMakeLists.txt)
-    * [sdkconfig](../src/espressifIDF/sdkconfig)
-    * [sdkconfig.old](../src/espressifIDF/sdkconfig.old)
+      * [main.c/](../src/espressifIDF/main/main.c)
+      * [main.h/](../src/espressifIDF/main/main.h)
 
 
 ## Setup Instructions
