@@ -1,127 +1,163 @@
-#include <stdio.h>
-#include "driver/gpio.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_timer.h"
-#include "esp_attr.h"
+#include "main.h"
 
-//idf.py fullclean
-//idf.py build
 
-// HOLMAN
-// a  H - 8 x 100 = 800us = 0.8
-// b  O - 12 x 100 = 1200us = 1.2ms
-// c  L - 12 + 4 = 16
-// d  M - 13 x 500 = 6500us = 6.5ms
-// A - 1 % 4 + 1 = 2
+/**
+ *
+ * @author Fraser Holman
+ * @date 27/02/2025
+ *
+ * @brief B31DG Assignment 1 - Part 1 Arduino Code
+ *
+ *
+ * System creates a unique waveform that can be viewed in real time on an oscilloscope or visually from the LEDs when slowed down
+ * 
+ * Two interrupt buttons are implemented, the enable button activates and deactivates the DATA pulse and the select button changes the behaviour of the waveform
+ *
+ * The alternate waveform for this system is a reversed form of the DATA waveform starting at the widest pulse rather than the shortest
+ *
+ * By setting DEBUG to 1 this will slow down the waveform to be seen from the LED output
+ * Setting DEBUG to 0 will show the waveform in real time which can be viewed on an oscilloscope
+ *
+ * Calculated System Parameters from the specification to define the nature of the waveform
+ *
+ * ## SYSTEM PARAMETERS - HOLMAN
+ *  - ## PULSE TIMING
+ *    - a = H - 8 x 100 = 800us = 0.8
+ *    - b = O - 12 x 100 = 1200us = 1.2ms
+ *    - c = L - 12 + 4 = 16
+ *    - d = M - 13 x 500 = 6500us = 6.5ms
+ *  - ## ALTERNATE BEHAVIOUR CALCULATION
+ *    - alternate behaviour = A - 1 % 4 + 1 = 2
+ *  - ## PULSE WIDTH FORMULA
+ *    - TON(pulseCounter) = a + ((pulseCounter-1) x 50) = 800 + ((pulseCounter-1 x 50)) for 2 <= pulseCounter <= 16 (c)
+ *
+*/
 
-#define LED1 GPIO_NUM_4
-#define LED2 GPIO_NUM_16
-#define BUTTON1 GPIO_NUM_23
-#define BUTTON2 GPIO_NUM_22
 
-#define DEBUG 1
+/**
+ *
+ * Method to handle enable button interrupt
+ *
+ */
+void IRAM_ATTR enableClick(void *arg) {
+    unsigned long currentTime = esp_timer_get_time(); // keeps track of number of milliseconds that have passed 
 
-#ifdef DEBUG
-#define FACTOR 1000
-#else
-#define FACTOR 1
-#endif
-
-const float a = 800;
-const uint16_t b = 1200;
-const uint16_t numPulses = 16;
-const uint16_t d = 6500;
-const uint8_t tysncOn = 50;
-
-uint8_t button1State = 0;
-bool button2State = true;
-
-bool start = true;
-
-uint16_t n = 0;
-
-volatile unsigned long lastDebounceTime1 = 0; // Store last press time
-volatile unsigned long lastDebounceTime2 = 0; // Store last press time
-volatile uint8_t debounceDelay = 50;
-
-static void IRAM_ATTR button1_isr_handler(void *arg) {
-    unsigned long currentTime = esp_timer_get_time() / 1000;  // Convert to ms
-
-    printf("Button 1 pressed \n");
-
-    // Debounce check
+    // ignore interrupts that happen within debounceDelay
     if (currentTime - lastDebounceTime1 > debounceDelay) {
-        if (button1State) {
-            button1State = 0;
-        }
-        else {
-            button1State = 1;
-        }
-        lastDebounceTime2 = currentTime;  // Update debounce time
+        enableState = enableState ? 0 : 1; // sets enableState to either 0 or 1 to toggle the DATA signal on/off
+        lastDebounceTime1 = currentTime;  // Update last debounce time
     }
-}
+}  
 
-void IRAM_ATTR button2_isr_handler(void *arg) {
-    unsigned long currentTime = esp_timer_get_time() / 1000;  // Convert to ms
+/**
+ *
+ * Method to handle select button interrupt
+ *
+ */
+void IRAM_ATTR selectClick(void *arg) {
+    unsigned long currentTime = esp_timer_get_time(); // keeps track of number of milliseconds that have passed 
 
-    ESP_LOGI("MY_TAG", "This is an info message!");
-
-    // Debounce check
+    // ignore interrupts that happen within debounceDelay
     if (currentTime - lastDebounceTime2 > debounceDelay) {
-        button2State = !button2State;  // Toggle button state
-        lastDebounceTime2 = currentTime;  // Update debounce time
+        selection *= - 1; // changes selection to either -1 or 1 to be used to either increment or decrement pulse counter in main loop
+        lastDebounceTime2 = currentTime;  // Update last debounce time
     }
 }
 
-float newTime(uint16_t val) {
-    return val<2 ? a : a + ((val-1) * 50);
-}
-
-void my_loop() {
-    while (true) {
-        if (!button2State) n--;
-
-        ESP_LOGI("MY_TAG", "This is an info message!");
-
-        if (n == numPulses || n == 0) 
-        {
-            if (!start) esp_rom_delay_us(d * FACTOR);
-
-            start = false;
-
-            gpio_set_level(LED1, 1);
-            esp_rom_delay_us(tysncOn * FACTOR);
-            gpio_set_level(LED1, 0);
-
-            n = button2State ? 0 : numPulses;
-        }
-
-        if (button2State) n++;
-
-        gpio_set_level(LED2, button1State);
-        esp_rom_delay_us(newTime(n) * FACTOR);
-        gpio_set_level(LED2, 0);
-        esp_rom_delay_us(b * FACTOR);
-    }
-}
-
-
+/**
+ *
+ * Initial function that is executed on system start
+ * Contains setup code for GPIO pins
+ *
+ */
 void app_main(void)
 {
-    gpio_set_direction(BUTTON1,GPIO_MODE_INPUT);
-    gpio_set_pull_mode(BUTTON1,GPIO_PULLUP_ONLY);
-    gpio_set_intr_type(BUTTON1, GPIO_INTR_POSEDGE);
+    // configure the ENABLE button to toggle DATA signal on/off
+    gpio_set_direction(ENABLE,GPIO_MODE_INPUT);
+    gpio_set_pull_mode(ENABLE,GPIO_PULLUP_ONLY); // enable pullup resistor for button
+    gpio_set_intr_type(ENABLE, GPIO_INTR_NEGEDGE); // trigger interrupt on falling edge of button press
 
-    gpio_set_direction(BUTTON2,GPIO_MODE_INPUT);
-    gpio_set_pull_mode(BUTTON2,GPIO_PULLUP_ONLY);
+    // configure the SELECT button to change waveform behaviours
+    gpio_set_direction(SELECT,GPIO_MODE_INPUT);
+    gpio_set_pull_mode(SELECT,GPIO_PULLUP_ONLY); // enable pullup resistor for button
+    gpio_set_intr_type(SELECT, GPIO_INTR_NEGEDGE); // trigger interrupt on falling edge of button press
 
-    gpio_set_direction(LED1,GPIO_MODE_OUTPUT);
-    gpio_set_direction(LED2,GPIO_MODE_OUTPUT);
+    gpio_set_direction(DATA,GPIO_MODE_OUTPUT); // configure the DATA signal 
+    gpio_set_direction(SYNC,GPIO_MODE_OUTPUT); // configure the SYNC signal
 
-    gpio_install_isr_service(0);
-    gpio_isr_handler_add(BUTTON1, button1_isr_handler, NULL);
-    gpio_isr_handler_add(BUTTON2, button2_isr_handler, (void *)BUTTON2);
+    // install ISR
+    gpio_install_isr_service(ESP_INTR_FLAG_IRAM);
 
-    my_loop();
+    // attach interrupts to the ENABLE and SELECT buttons
+    gpio_isr_handler_add(ENABLE, enableClick, (void *)ENABLE);
+    gpio_isr_handler_add(SELECT, selectClick, (void *)SELECT);
+
+    my_loop(); // starts loop for data waveform control
+}
+
+/**
+ *
+ * Method to create a custom delay
+ * The delay will be multiplied by FACTOR if in DEBUG mode this will be equal to 1000 and then 1 otherwise
+ *
+ * @param t desired delay (in microseconds)
+ * 
+ */
+void customDelay(uint32_t t) {
+    esp_rom_delay_us(t * FACTOR);
+}
+
+/**
+ *
+ * Method to generate one DATA pulse
+ *
+ * @param pulseCounter current pulse number
+ * 
+ */
+void dataPulse(uint16_t pulseCounter) {
+    // DATA pulse
+    gpio_set_level(SYNC, enableState); // turn LED high only if DATA has been enabled by a button interrupt
+    customDelay(TON(pulseCounter)); // pulse width changes depending on pulse number
+    gpio_set_level(SYNC, 0);
+    customDelay(offTime); // pulse off-time
+}
+
+/**
+ *
+ * Method to pulse the SYNC signal
+ *
+ */
+void syncPulse() {
+    gpio_set_level(DATA, 1);
+    customDelay(tysncOn); // SYNC pulse on-time (50us real time)
+    gpio_set_level(DATA, 0);
+}
+
+/**
+ *
+ * Loop contains logic to control the DATA and SYNC pulses
+ *
+ */
+void my_loop() {
+    while (true) {
+        uint16_t pulseCounter; // counter to keep track of number of pulses
+
+        syncPulse(); // SYNC pulse activated at beginning of waveform
+
+        // selection = 1 means normal waveform
+        // selection = -1 means alternate waveform
+        // if normal waveform start pulseCOunter at 1
+        // if alternate waveform start pulseCounter at the numPulses (in this case 16) 
+        // if alternate waveform has been activated for loop will decrement rather than increment using the value of selection
+        // for loop test case tests for both coniditions whether the pulseCounter has reached 1 or numPulses
+        for (pulseCounter = (selection == 1 ? 1 : numPulses); pulseCounter > 0 && pulseCounter <= numPulses; pulseCounter+=selection) {
+            #if DEBUG
+                ESP_LOGI("Pulse Counter", "%d", pulseCounter);// monitor current pulse using serial monitor only if using debug mode
+            #endif
+
+            dataPulse(pulseCounter); // DATA pulse activated for each pulse
+        }
+
+        customDelay(idleTime); // idle time between last pulse off-time and SYNC pulse
+    }
 }
