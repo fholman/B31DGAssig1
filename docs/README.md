@@ -4,19 +4,19 @@
 This project is an **ESP32-based signal control system** designed to handle input interrupts and generate pulse waveforms. It utilizes GPIO for input buttons and output signals, with an efficient **interrupt-driven** approach to manage button presses and control LED signaling.
 
 ## About The Project
-The project follows the requirements of B31DG Assignment 1. The system utilises GPIO pins on an ESP32-WROOM module, the system was first implemented in the Arduino ide in a .ino file and then was followed by implementing the system using the ESP-IDF extension with VSCode. The system generates a waveform utilising two GPIO pins for LEDs and a further two GPIO pins for input buttons. The signal timing parameters were defined by the calculations below. 
+The project follows the requirements of B31DG Assignment 1. The system utilises GPIO pins on an ESP32-WROOM module, the system was first implemented in the Arduino ide in a .ino file and then was followed by implementing the system using the ESP-IDF extension with VSCode. The system generates two waveforms utilising two GPIO pins for LEDs and a further two GPIO pins for input buttons. The DATA signal is defined by the calculations below and the SYNC signal pulses at the beginning of each DATA signal.
 
-The alternate signal was a reversed waveform of the original signal.
+The alternate signal was a reversed waveform of the original signal, this can be changed by using the SELECT button defined by the program. The ENABLE button can also be used to toggle the DATA signal on and off.
 
 
 | **Parameter**           | **Numerical Mapping**      | **Calculation**                     |
 |------------------------|---------------------------|-------------------------------------|
-| **a**                 | 'H' maps to 8             | 8 × 100µs = **800µs**               |
-| **b**                 | 'O' maps to 12            | 12 × 100µs = **1200µs**             |
-| **c**                 | 'L' maps to 12            | 12 + 4 = **16**                     |
-| **d**                 | 'M' maps to 13            | 13 × 500µs = **6500µs**             |
+| **a** Initial DATA pulse on time    | 'H' maps to 8             | 8 × 100µs = **800µs**               |
+| **b** DATA pulse off time             | 'O' maps to 12            | 12 × 100µs = **1200µs**             |
+| **c** Number of Pulses                 | 'L' maps to 12            | 12 + 4 = **16**                     |
+| **d** Idle Time                 | 'M' maps to 13            | 13 × 500µs = **6500µs**             |
 | **Alternative Behaviour** | 'A' maps to 1        | (1 % 4) + 1 = **2**                 |
-| **T<sub>ON(n)</sub>** | N/A                       | 800 + ((n - 1) × 50µs) for n ≥ 2   |
+| **T<sub>ON(n)</sub>** DATA pulse width | N/A                       | 800 + ((n - 1) × 50µs) for n ≥ 2   |
 
 
 
