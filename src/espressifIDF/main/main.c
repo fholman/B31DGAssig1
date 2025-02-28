@@ -28,7 +28,7 @@
  *  - ## ALTERNATE BEHAVIOUR CALCULATION
  *    - alternate behaviour = A - 1 % 4 + 1 = 2
  *  - ## PULSE WIDTH FORMULA
- *    - TON(pulseCounter) = a + ((pulseCounter-1) x 50) = 800 + ((pulseCounter-1 x 50)) for 2 <= pulseCounter <= 16 (c)
+ *    - TON(pulseCounter) = a + ((pulseCounter-1) x 50) = 800 + ((pulseCounter-1) x 50) for 2 <= pulseCounter <= 16 (c)
  *
 */
 

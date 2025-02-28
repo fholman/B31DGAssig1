@@ -56,6 +56,7 @@ The repository is split mainly into doc and src files. The src files contain bot
   * [B31DG - Assignment 1 - H00368728 - Fraser Holman.docx](../docs/B31DG%20-%20Assignment%201%20-%20H00368728%20-%20Fraser%20Holman.docx)  # assignment report
   * [alternateWaveform.PNG](../docs/alternateWaveform.PNG)  # alternate waveform png
   * [normalWaveform.PNG](../docs/normalWaveform.PNG)    # normal waveform png
+  * [demonstration.mp4](../docs/demonstration.mp4)
   * [README.md](../docs/README.md)  # read me
 * [src/](../src)    # source files
   * [arduino/](../src/arduino)
